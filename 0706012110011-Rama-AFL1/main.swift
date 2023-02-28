@@ -6,6 +6,6 @@
 //
 
 import Foundation
+import CoreData
 
-print("Hello, World!")
-
+CoreDataUtils.initialize()

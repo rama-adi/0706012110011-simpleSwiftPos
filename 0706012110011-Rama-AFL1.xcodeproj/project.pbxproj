@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		259642FC29ADE4CD0092CD23 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259642FB29ADE4CD0092CD23 /* CoreDataUtils.swift */; };
+		259642FF29AE0CBC0092CD23 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259642FE29AE0CBC0092CD23 /* User.swift */; };
 		25A4AE5A29ADA01800D71C0C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AE5929ADA01800D71C0C /* main.swift */; };
+		25A4AE6729ADDD4700D71C0C /* Main.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AE6529ADDD4700D71C0C /* Main.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		259642FB29ADE4CD0092CD23 /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
+		259642FE29AE0CBC0092CD23 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		25A4AE5629ADA01800D71C0C /* 0706012110011-Rama-AFL1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "0706012110011-Rama-AFL1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A4AE5929ADA01800D71C0C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		25A4AE6629ADDD4700D71C0C /* Main.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Main.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		259642F829ADE12E0092CD23 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				259642FB29ADE4CD0092CD23 /* CoreDataUtils.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		259642FD29AE0CB20092CD23 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				259642FE29AE0CBC0092CD23 /* User.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		25A4AE4D29ADA01800D71C0C = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +79,10 @@
 		25A4AE5829ADA01800D71C0C /* 0706012110011-Rama-AFL1 */ = {
 			isa = PBXGroup;
 			children = (
+				259642FD29AE0CB20092CD23 /* models */,
+				259642F829ADE12E0092CD23 /* utils */,
 				25A4AE5929ADA01800D71C0C /* main.swift */,
+				25A4AE6529ADDD4700D71C0C /* Main.xcdatamodeld */,
 			);
 			path = "0706012110011-Rama-AFL1";
 			sourceTree = "<group>";
@@ -120,7 +145,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				259642FF29AE0CBC0092CD23 /* User.swift in Sources */,
+				25A4AE6729ADDD4700D71C0C /* Main.xcdatamodeld in Sources */,
 				25A4AE5A29ADA01800D71C0C /* main.swift in Sources */,
+				259642FC29ADE4CD0092CD23 /* CoreDataUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +312,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		25A4AE6529ADDD4700D71C0C /* Main.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				25A4AE6629ADDD4700D71C0C /* Main.xcdatamodel */,
+			);
+			currentVersion = 25A4AE6629ADDD4700D71C0C /* Main.xcdatamodel */;
+			path = Main.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 25A4AE4E29ADA01800D71C0C /* Project object */;
 }
