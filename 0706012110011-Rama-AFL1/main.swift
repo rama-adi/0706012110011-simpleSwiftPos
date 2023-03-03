@@ -6,6 +6,9 @@
 //
 
 import Foundation
-import CoreData
 
-CoreDataUtils.initialize()
+struct Consts {
+    static var shoppingCart: [Product.Model : Int] = [:]
+}
+
+MainScreenController.showMainScreen()
