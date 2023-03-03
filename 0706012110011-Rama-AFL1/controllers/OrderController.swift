@@ -56,7 +56,7 @@ struct OrderController {
         if amountQuestion.value == 0 {
             print("You didn't order the item. not added to the cart.")
         } else {
-            Consts.shoppingCart[product] = (Consts.shoppingCart[product] ?? 0) + amountQuestion.value
+            Consts_ShoppingCart[product] = (Consts_ShoppingCart[product] ?? 0) + amountQuestion.value
             print("\(amountQuestion.value)x \(product.name) - Total: \(product.price * amountQuestion.value)")
             print("Added to cart.")
         }

@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Consts {
-    static var shoppingCart: [Product.Model : Int] = [:]
-}
+var Consts_ShoppingCart = [ProductModel: Int] = [:]
 
-MainScreenController.showMainScreen()
+
+MainScreenController_ShowMainScreen()
