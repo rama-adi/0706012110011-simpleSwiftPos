@@ -14,36 +14,36 @@ struct CartController {
         
         var total = 0
         
-        if Consts.shoppingCart.isEmpty {
+        if Consts_ShoppingCart.isEmpty {
             print("Your shopping cart is still empty")
             print("\nPress [return] to go back to main screen")
             let _ = readLine()
             
-            MainScreenController.showMainScreen()
+            MainScreenController_ShowMainScreen()
         
         }
         
         
-        Consts.shoppingCart.forEach({ (item, amount) in
+        Consts_ShoppingCart.forEach({ (item, amount) in
             print("- \(item.name) (\(item.price) ea) x\(amount) - \(item.price * amount)")
             total += (item.price * amount)
         })
         
-        if !Consts.shoppingCart.isEmpty {
+        if !Consts_ShoppingCart.isEmpty {
             print("Total price: \(total)")
-            let confirmPaymentNow = Utils.ConsoleAsk.confirm(question: "Do you want to pay now?")
+            let confirmPaymentNow = ConsoleAskUtil_Confirm(question: "Do you want to pay now?")
             
             if confirmPaymentNow {
                 confirmPayment(total: total)
             } else {
-                MainScreenController.showMainScreen()
+                MainScreenController_ShowMainScreen()
             }
         }
     }
     
     
     static func confirmPayment(total: Int) {
-        let money = Utils.ConsoleAsk.integer(question: "Please enter the amount of money: ")
+        let money = ConsoleAskUtil_Integer(question: "Please enter the amount of money: ")
         
         if money.value < 0 {
             print("Amount is invalid! \n")
@@ -69,11 +69,11 @@ struct CartController {
             print("You pay: \(money) (no change)")
         }
         
-        Consts.shoppingCart = [:]
+        Consts_ShoppingCart = [:]
         print("Enjoy your meals!")
         print("\n\nPress [return] to go back to main screen")
         let _ = readLine()
         
-        MainScreenController.showMainScreen()
+        MainScreenController_ShowMainScreen()
     }
 }
