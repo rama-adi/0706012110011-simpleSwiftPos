@@ -34,39 +34,42 @@ struct OrderController {
             MainScreenController_ShowMainScreen()
         default:
             let product = shop.products[ Int(select.value)! - 1 ]
-            orderProcess(product: product, shop: shop)
+            OrderController_OrderProcess__P(product: product, shop: shop)
             
         }
     }
     
-    static private func orderProcess(product: ProductModel, shop: ShopModel) {
-        ConsoleUtil_ClearScreen()
-        print("\(product.name) @ \(product.price)")
-        
-        let amountQuestion = ConsoleAskUtil_Integer(
-            question: "How many \(product.name) do you want to buy?",
-            cancelable: true
-        )
-        
-        if amountQuestion.canceled {
-            startOrder(shop: shop)
-        }
-        
     
-        if amountQuestion.value == 0 {
-            print("You didn't order the item. not added to the cart.")
-        } else {
-            Consts_ShoppingCart[product] = (Consts_ShoppingCart[product] ?? 0) + amountQuestion.value
-            print("\(amountQuestion.value)x \(product.name) - Total: \(product.price * amountQuestion.value)")
-            print("Added to cart.")
-        }
-        
-        let addMore = ConsoleAskUtil_Confirm(question: "Do you want to add more product from this store?")
-        
-        if addMore {
-            startOrder(shop: shop)
-        }
-        
-        MainScreenController_ShowMainScreen()
+}
+
+
+func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
+    ConsoleUtil_ClearScreen()
+    print("\(product.name) @ \(product.price)")
+    
+    let amountQuestion = ConsoleAskUtil_Integer(
+        question: "How many \(product.name) do you want to buy?",
+        cancelable: true
+    )
+    
+    if amountQuestion.canceled {
+        startOrder(shop: shop)
     }
+    
+
+    if amountQuestion.value == 0 {
+        print("You didn't order the item. not added to the cart.")
+    } else {
+        Consts_ShoppingCart[product] = (Consts_ShoppingCart[product] ?? 0) + amountQuestion.value
+        print("\(amountQuestion.value)x \(product.name) - Total: \(product.price * amountQuestion.value)")
+        print("Added to cart.")
+    }
+    
+    let addMore = ConsoleAskUtil_Confirm(question: "Do you want to add more product from this store?")
+    
+    if addMore {
+        startOrder(shop: shop)
+    }
+    
+    MainScreenController_ShowMainScreen()
 }
