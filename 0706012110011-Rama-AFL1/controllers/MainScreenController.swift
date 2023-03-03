@@ -36,6 +36,6 @@ func MainScreenController_ShowMainScreen() -> Void {
         exit(0)
     default:
         let shop = Model_Shops_GetShops[ Int(select.value)! - 1 ]
-        OrderController.startOrder(shop: shop)
+        OrderController_StartOrder(shop: shop)
     }
 }

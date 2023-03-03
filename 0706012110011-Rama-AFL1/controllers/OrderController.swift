@@ -7,41 +7,38 @@
 
 import Foundation
 
-struct OrderController {
-    static func startOrder(shop: ShopModel) {
-        ConsoleUtil_ClearScreen()
-        
-        print("Hi, welcome back to \(shop.name)!")
-    
-        
-        var options = shop.products.map({ product in
-            return ConsoleAskUtil_Option(value: String(product.ID), label: product.name)
-        })
-        
-        options += [
-            ConsoleAskUtil_Option(value: "", label: "-", isSeparator: true),
-            ConsoleAskUtil_Option(value: "B", label: "ack to main menu"),
-        ]
-        
-        let select = ConsoleAskUtil_Dropdown(
-            question: "What would you like to order?",
-            options: options,
-            caseInsensitive: true
-        )
-        
-        switch select.value {
-        case "B":
-            MainScreenController_ShowMainScreen()
-        default:
-            let product = shop.products[ Int(select.value)! - 1 ]
-            OrderController_OrderProcess__P(product: product, shop: shop)
-            
-        }
-    }
-    
-    
-}
 
+
+func OrderController_StartOrder(shop: ShopModel) {
+    ConsoleUtil_ClearScreen()
+    
+    print("Hi, welcome back to \(shop.name)!")
+
+    
+    var options = shop.products.map({ product in
+        return ConsoleAskUtil_Option(value: String(product.ID), label: product.name)
+    })
+    
+    options += [
+        ConsoleAskUtil_Option(value: "", label: "-", isSeparator: true),
+        ConsoleAskUtil_Option(value: "B", label: "ack to main menu"),
+    ]
+    
+    let select = ConsoleAskUtil_Dropdown(
+        question: "What would you like to order?",
+        options: options,
+        caseInsensitive: true
+    )
+    
+    switch select.value {
+    case "B":
+        MainScreenController_ShowMainScreen()
+    default:
+        let product = shop.products[ Int(select.value)! - 1 ]
+        OrderController_OrderProcess__P(product: product, shop: shop)
+        
+    }
+}
 
 func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
     ConsoleUtil_ClearScreen()
@@ -53,7 +50,7 @@ func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
     )
     
     if amountQuestion.canceled {
-        startOrder(shop: shop)
+        OrderController_StartOrder(shop: shop)
     }
     
 
@@ -68,7 +65,7 @@ func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
     let addMore = ConsoleAskUtil_Confirm(question: "Do you want to add more product from this store?")
     
     if addMore {
-        startOrder(shop: shop)
+        OrderController_StartOrder(shop: shop)
     }
     
     MainScreenController_ShowMainScreen()
