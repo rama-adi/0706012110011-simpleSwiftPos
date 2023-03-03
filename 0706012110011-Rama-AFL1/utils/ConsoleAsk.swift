@@ -116,5 +116,3 @@ func ConsoleAskUtil_Confirm(question: String, errorMessage: String = "Invalid in
         return ConsoleAskUtil_Confirm(question: question, errorMessage: errorMessage)
     }
 }
-
-

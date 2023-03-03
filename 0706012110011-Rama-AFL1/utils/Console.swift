@@ -8,10 +8,8 @@
 import Foundation
 
 
-struct ConsoleUtil {
-    func clearScreen() -> Void {
-        for _ in 1...100 {
-            print("")
-        }
+func ConsoleUtil_ClearScreen() -> Void {
+    for _ in 1...100 {
+        print("")
     }
 }
