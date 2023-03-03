@@ -13,9 +13,9 @@ typealias ProductModel = ( ID: Int, name: String, price: Int )
 func ProductModel_AddToCart(shop:ShopModel, product: ProductModel, amount: Int) {
    
     
-    guard let cartAmount =  Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] {
+    guard let cartAmount =  Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] else {
         Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] = 0
     }
     
-    Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] += amount
+    Consts_ShoppingCart["\(shop.ID)|\(product.ID)"]! += amount
 }
