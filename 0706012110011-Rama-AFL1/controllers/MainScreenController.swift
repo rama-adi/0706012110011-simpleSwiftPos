@@ -17,8 +17,8 @@ struct MainScreenController {
         
        
         options += [
-            ConsoleAskUtil_Option(value: "", label: "-", isSeparator: true)
-            ConsoleAskUtil_Option(value: "S", label: "hopping cart")
+            ConsoleAskUtil_Option(value: "", label: "-", isSeparator: true),
+            ConsoleAskUtil_Option(value: "S", label: "hopping cart"),
             ConsoleAskUtil_Option(value: "Q", label: "uit")
         ]
         
