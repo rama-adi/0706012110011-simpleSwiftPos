@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-
-
 func MainScreenController_ShowMainScreen() -> Void {
     print("Welcome to UC Walk Cafeteria 👨🏼‍🍳👨🏼‍🍳")
     
@@ -27,14 +24,15 @@ func MainScreenController_ShowMainScreen() -> Void {
 
     let select = ConsoleAskUtil_Dropdown(
         question: "Please choose cafeteria:",
-        options: options
+        options: options,
+        caseInsensitive: true
     )
     
     
     switch select.value {
-    case "S":
+    case "s":
         return CartController.showCart()
-    case "Q":
+    case "q":
         exit(0)
     default:
         let shop = Model_Shops_GetShops[ Int(select.value)! - 1 ]

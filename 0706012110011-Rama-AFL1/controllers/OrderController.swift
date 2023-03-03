@@ -8,22 +8,22 @@
 import Foundation
 
 struct OrderController {
-    static func startOrder(shop: Shop.Model) {
-        Utils.Console.clearScreen()
+    static func startOrder(shop: ShopModel) {
+        ConsoleUtil_ClearScreen()
         
         print("Hi, welcome back to \(shop.name)!")
     
         
         var options = shop.products.map({ product in
-            return Utils.ConsoleAsk.option(value: String(product.ID), label: product.name)
+            return ConsoleAskUtil_Option(value: String(product.ID), label: product.name)
         })
         
         options += [
-            Utils.ConsoleAsk.option(value: "", label: "-", isSeparator: true),
-            Utils.ConsoleAsk.option(value: "B", label: "ack to main menu"),
+            ConsoleAskUtil_Option(value: "", label: "-", isSeparator: true),
+            ConsoleAskUtil_Option(value: "B", label: "ack to main menu"),
         ]
         
-        let select = Utils.ConsoleAsk.dropdown(
+        let select = ConsoleAskUtil_Dropdown(
             question: "What would you like to order?",
             options: options,
             caseInsensitive: true
@@ -31,7 +31,7 @@ struct OrderController {
         
         switch select.value {
         case "B":
-            MainScreenController.showMainScreen()
+            MainScreenController_ShowMainScreen()
         default:
             let product = shop.products[ Int(select.value)! - 1 ]
             orderProcess(product: product, shop: shop)
@@ -39,11 +39,11 @@ struct OrderController {
         }
     }
     
-    static private func orderProcess(product: Product.Model, shop: Shop.Model) {
-        Utils.Console.clearScreen()
+    static private func orderProcess(product: ProductModel, shop: ShopModel) {
+        ConsoleUtil_ClearScreen()
         print("\(product.name) @ \(product.price)")
         
-        let amountQuestion = Utils.ConsoleAsk.integer(
+        let amountQuestion = ConsoleAskUtil_Integer(
             question: "How many \(product.name) do you want to buy?",
             cancelable: true
         )
@@ -61,12 +61,12 @@ struct OrderController {
             print("Added to cart.")
         }
         
-        let addMore = Utils.ConsoleAsk.confirm(question: "Do you want to add more product from this store?")
+        let addMore = ConsoleAskUtil_Confirm(question: "Do you want to add more product from this store?")
         
         if addMore {
             startOrder(shop: shop)
         }
         
-        MainScreenController.showMainScreen()
+        MainScreenController_ShowMainScreen()
     }
 }
