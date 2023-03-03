@@ -16,15 +16,15 @@ func OrderController_StartOrder(shop: ShopModel) {
 
     
     var options = shop.products.map({ product in
-        return ConsoleAskUtil_Option(value: String(product.ID), label: product.name)
+        return Util_ConsoleAsk_Option(value: String(product.ID), label: product.name)
     })
     
     options += [
-        ConsoleAskUtil_Option(value: "", label: "-", isSeparator: true),
-        ConsoleAskUtil_Option(value: "B", label: "ack to main menu"),
+        Util_ConsoleAsk_Option(value: "", label: "-", isSeparator: true),
+        Util_ConsoleAsk_Option(value: "B", label: "ack to main menu"),
     ]
     
-    let select = ConsoleAskUtil_Dropdown(
+    let select = Util_ConsoleAsk_Dropdown(
         question: "What would you like to order?",
         options: options,
         caseInsensitive: true
@@ -44,7 +44,7 @@ func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
     ConsoleUtil_ClearScreen()
     print("\(product.name) @ \(product.price)")
     
-    let amountQuestion = ConsoleAskUtil_Integer(
+    let amountQuestion = Util_ConsoleAsk_Integer(
         question: "How many \(product.name) do you want to buy?",
         cancelable: true
     )

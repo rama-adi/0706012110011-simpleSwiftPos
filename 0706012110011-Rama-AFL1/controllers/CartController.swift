@@ -52,7 +52,7 @@ func CartController_BreakdownIDSequence(IDSequence: String) -> (shop: ShopModel,
 }
 
 func CartController_ConfirmPayment(total: Int) {
-    let money = ConsoleAskUtil_Integer(question: "Please enter the amount of money: ")
+    let money = Util_ConsoleAsk_Integer(question: "Please enter the amount of money: ")
     
     if money.value < 0 {
         print("Amount is invalid! \n")

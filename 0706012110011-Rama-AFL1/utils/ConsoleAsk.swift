@@ -7,16 +7,16 @@
 
 import Foundation
 
-typealias _Option = ( value: String, label: String, isSeparator: Bool )
+typealias Util_ConsoleAsk_Option_Type = ( value: String, label: String, isSeparator: Bool )
 
 
-func ConsoleAskUtil_Option(value: String, label: String, isSeparator: Bool = false) -> _Option  {
+func Util_ConsoleAsk_Option(value: String, label: String, isSeparator: Bool = false) -> Util_ConsoleAsk_Option_Type  {
     return (
         value, label, isSeparator
     )
 }
 
-func ConsoleAskUtil_Dropdown(question: String, options: [_Option], caseInsensitive: Bool = true, errorMessage: String = "Invalid input!") -> _Option {
+func Util_ConsoleAsk_Dropdown(question: String, options: [Util_ConsoleAsk_Option_Type], caseInsensitive: Bool = true, errorMessage: String = "Invalid input!") -> Util_ConsoleAsk_Option_Type {
     print(question)
     for option in options {
         if option.isSeparator != true {
@@ -30,10 +30,10 @@ func ConsoleAskUtil_Dropdown(question: String, options: [_Option], caseInsensiti
     
     guard var input = readLine() else {
         print("Input is empty! Please fill out the question.")
-        return ConsoleAskUtil_Dropdown(question: question, options: options, errorMessage: errorMessage)
+        return Util_ConsoleAsk_Dropdown(question: question, options: options, errorMessage: errorMessage)
     }
     
-    var selected: _Option? = nil
+    var selected: Util_ConsoleAsk_Option_Type? = nil
     
     if caseInsensitive {
         input = input.lowercased()
@@ -56,13 +56,13 @@ func ConsoleAskUtil_Dropdown(question: String, options: [_Option], caseInsensiti
     
     if selected == nil {
         print(errorMessage)
-        return ConsoleAskUtil_Dropdown(question: question, options: options, errorMessage: errorMessage)
+        return Util_ConsoleAsk_Dropdown(question: question, options: options, errorMessage: errorMessage)
     }
     
     return selected!
 }
 
-func ConsoleAskUtil_Integer(
+func Util_ConsoleAsk_Integer(
     question: String,
     errorMessage: String = "Invalid input!",
     cancelable: Bool = false
@@ -77,7 +77,7 @@ func ConsoleAskUtil_Integer(
     
     guard let input = readLine() else {
         print("Input is empty! Please fill out the question.")
-        return ConsoleAskUtil_Integer(question: question, errorMessage: errorMessage)
+        return Util_ConsoleAsk_Integer(question: question, errorMessage: errorMessage)
     }
     
     if cancelable {
@@ -88,7 +88,7 @@ func ConsoleAskUtil_Integer(
     
     guard let integer = Int(input) else {
         print(errorMessage)
-        return ConsoleAskUtil_Integer(question: question, errorMessage: errorMessage)
+        return Util_ConsoleAsk_Integer(question: question, errorMessage: errorMessage)
     }
     
   
