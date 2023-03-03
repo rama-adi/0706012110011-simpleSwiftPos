@@ -13,7 +13,7 @@ typealias ProductModel = ( ID: Int, name: String, price: Int )
 func ProductModel_AddToCart(shop:ShopModel, product: ProductModel, amount: Int) {
    
     
-    guard Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] else {
+    if Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] == nil {
         Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] = 0
     }
     
