@@ -73,9 +73,9 @@ func CartController_ConfirmPayment(total: Int) {
     
     
     if money.value > total {
-        print("You pay: \(money) Change: \(money.value - total)")
+        print("You pay: \(money.value) Change: \(money.value - total)")
     } else {
-        print("You pay: \(money) (no change)")
+        print("You pay: \(money.value) (no change)")
     }
     
     Consts_ShoppingCart = [:]
