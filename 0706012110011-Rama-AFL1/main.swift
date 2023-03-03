@@ -7,7 +7,4 @@
 
 import Foundation
 
-var Consts_ShoppingCart = [ProductModel: Int] = [:]
-
-
 MainScreenController_ShowMainScreen()

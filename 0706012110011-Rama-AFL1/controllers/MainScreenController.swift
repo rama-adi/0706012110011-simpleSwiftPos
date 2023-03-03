@@ -31,7 +31,7 @@ func MainScreenController_ShowMainScreen() -> Void {
     
     switch select.value {
     case "s":
-        return CartController.showCart()
+        return CartController_ShowCart()
     case "q":
         exit(0)
     default:
