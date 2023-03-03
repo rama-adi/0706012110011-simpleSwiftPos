@@ -11,5 +11,11 @@ typealias ProductModel = ( ID: Int, name: String, price: Int )
 
 
 func ProductModel_AddToCart(shop:ShopModel, product: ProductModel, amount: Int) {
-    Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] += (Consts_ShoppingCart["SHOPID:\(shop.ID)-PID:\(product.ID)"] ?? 0) + amount
+   
+    
+    guard let cartAmount =  Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] {
+        Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] = 0
+    }
+    
+    Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] += amount
 }
