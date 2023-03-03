@@ -57,7 +57,7 @@ func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
     if amountQuestion.value == 0 {
         print("You didn't order the item. not added to the cart.")
     } else {
-        Consts_ShoppingCart[product] = (Consts_ShoppingCart[product] ?? 0) + amountQuestion.value
+        ProductModel_AddToCart(shop: shop, product: product, amount: amountQuestion.value)
         print("\(amountQuestion.value)x \(product.name) - Total: \(product.price * amountQuestion.value)")
         print("Added to cart.")
     }

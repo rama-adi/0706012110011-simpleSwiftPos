@@ -24,8 +24,11 @@ func CartController_ShowCart() {
     
     
     Consts_ShoppingCart.forEach({ (item, amount) in
-        print("- \(item.name) (\(item.price) ea) x\(amount) - \(item.price * amount)")
-        total += (item.price * amount)
+        
+        let brokedown = CartController_BreakdownIDSequence(IDSequence: item)
+        
+        print("- \(brokedown.product.name) (\(brokedown.product.price) ea) x\(amount) - \(brokedown.product.price * amount)")
+        total += (brokedown.product.price * amount)
     })
     
     if !Consts_ShoppingCart.isEmpty {
@@ -38,6 +41,14 @@ func CartController_ShowCart() {
             MainScreenController_ShowMainScreen()
         }
     }
+}
+
+func CartController_BreakdownIDSequence(IDSequence: String) -> (shop: ShopModel, product: ProductModel) {
+    let sequence = IDSequence.components(separatedBy: "|")
+    let shop = Model_Shops_GetShops.filter{ String($0.ID) == sequence[0] }[0]
+    let product = shop.products.filter{ String($0.ID) == sequence[1] }[0]
+    
+    return (shop, product)
 }
 
 func CartController_ConfirmPayment(total: Int) {

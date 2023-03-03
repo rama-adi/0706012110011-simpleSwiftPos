@@ -30,9 +30,9 @@ func MainScreenController_ShowMainScreen() -> Void {
     
     
     switch select.value {
-    case "s":
-        return CartController_ShowCart()
-    case "q":
+    case "S":
+        CartController_ShowCart()
+    case "Q":
         exit(0)
     default:
         let shop = Model_Shops_GetShops[ Int(select.value)! - 1 ]
