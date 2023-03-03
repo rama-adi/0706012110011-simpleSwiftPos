@@ -13,7 +13,6 @@
 		257049F029AF578300B1F2DC /* MainScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257049EF29AF578300B1F2DC /* MainScreenController.swift */; };
 		257049F229AF79CD00B1F2DC /* OrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257049F129AF79CD00B1F2DC /* OrderController.swift */; };
 		257049F629AF7E2E00B1F2DC /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257049F529AF7E2E00B1F2DC /* Console.swift */; };
-		257049F829AF7E3C00B1F2DC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257049F729AF7E3C00B1F2DC /* Utils.swift */; };
 		257049FA29B0742500B1F2DC /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257049F929B0742500B1F2DC /* CartController.swift */; };
 		25A4AE5A29ADA01800D71C0C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AE5929ADA01800D71C0C /* main.swift */; };
 /* End PBXBuildFile section */
@@ -37,7 +36,6 @@
 		257049EF29AF578300B1F2DC /* MainScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenController.swift; sourceTree = "<group>"; };
 		257049F129AF79CD00B1F2DC /* OrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderController.swift; sourceTree = "<group>"; };
 		257049F529AF7E2E00B1F2DC /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
-		257049F729AF7E3C00B1F2DC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		257049F929B0742500B1F2DC /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 		25A4AE5629ADA01800D71C0C /* 0706012110011-Rama-AFL1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "0706012110011-Rama-AFL1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A4AE5929ADA01800D71C0C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 			children = (
 				257049E829AF1F9300B1F2DC /* ConsoleAsk.swift */,
 				257049F529AF7E2E00B1F2DC /* Console.swift */,
-				257049F729AF7E3C00B1F2DC /* Utils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -174,7 +171,6 @@
 				252B303829B190CF004802EA /* Shop.swift in Sources */,
 				257049F629AF7E2E00B1F2DC /* Console.swift in Sources */,
 				257049E929AF1F9300B1F2DC /* ConsoleAsk.swift in Sources */,
-				257049F829AF7E3C00B1F2DC /* Utils.swift in Sources */,
 				257049F029AF578300B1F2DC /* MainScreenController.swift in Sources */,
 				252B303A29B191EC004802EA /* Product.swift in Sources */,
 			);

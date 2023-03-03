@@ -11,19 +11,19 @@ struct MainScreenController {
     static func showMainScreen() -> Void {
         print("Welcome to UC Walk Cafeteria 👨🏼‍🍳👨🏼‍🍳")
         
-        var options = Shop.shops.map({ shop in
-            return Utils.ConsoleAskElement.SelectOption(value: String(shop.ID), label: shop.name)
+        var options = Model_Shops_GetShops.map({ shop in
+            return ConsoleAskUtil_Option(value: String(shop.ID), label: shop.name)
         })
         
        
         options += [
-            Utils.ConsoleAsk.option(value: "", label: "-", isSeparator: true),
-            Utils.ConsoleAsk.option(value: "S", label: "hopping cart"),
-            Utils.ConsoleAsk.option(value: "Q", label: "uit"),
+            ConsoleAskUtil_Option(value: "", label: "-", isSeparator: true)
+            ConsoleAskUtil_Option(value: "S", label: "hopping cart")
+            ConsoleAskUtil_Option(value: "Q", label: "uit")
         ]
         
 
-        let select = Utils.ConsoleAsk.dropdown(
+        let select = ConsoleAskUtil_Dropdown(
             question: "Please choose cafeteria:",
             options: options
         )
@@ -35,7 +35,7 @@ struct MainScreenController {
         case "Q":
             exit(0)
         default:
-            let shop = Shop.shops[ Int(select.value)! - 1 ]
+            let shop = Model_Shops_GetShops[ Int(select.value)! - 1 ]
             OrderController.startOrder(shop: shop)
         }
     }

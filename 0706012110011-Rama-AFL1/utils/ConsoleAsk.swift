@@ -11,7 +11,6 @@ typealias _Option = ( value: String, label: String, isSeparator: Bool )
 
 
 func ConsoleAskUtil_Option(value: String, label: String, isSeparator: Bool = false) -> _Option  {
-    
     return (
         value, label, isSeparator
     )
