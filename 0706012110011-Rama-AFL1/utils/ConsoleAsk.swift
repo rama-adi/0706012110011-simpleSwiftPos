@@ -94,24 +94,3 @@ func Util_ConsoleAsk_Integer(
   
     return (false, integer)
 }
-
-func ConsoleAskUtil_Confirm(question: String, errorMessage: String = "Invalid input!") -> Bool {
-    print("\(question) [y/N]: ", terminator: "")
-    
-    guard let input = readLine() else {
-        print("Input is empty! Please fill out the question.")
-        return ConsoleAskUtil_Confirm(question: question, errorMessage: errorMessage)
-    }
-    
-    switch input {
-    case let x where ["y", "yes"].contains(x.lowercased()):
-        return true
-        
-    case let x where ["n", "no"].contains(x.lowercased()):
-        return false
-        
-    default:
-        print("Please only input only y/N answer!")
-        return ConsoleAskUtil_Confirm(question: question, errorMessage: errorMessage)
-    }
-}
