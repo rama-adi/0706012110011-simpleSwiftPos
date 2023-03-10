@@ -33,7 +33,7 @@ func CartController_ShowCart() {
     
     if !Consts_ShoppingCart.isEmpty {
         print("Total price: \(total)")
-        let confirmPaymentNow = ConsoleAskUtil_Confirm(question: "Do you want to pay now?")
+        let confirmPaymentNow = Util_ConsoleAsk_Confirm(question: "Do you want to pay now?")
         
         if confirmPaymentNow {
             CartController_ConfirmPayment(total: total)

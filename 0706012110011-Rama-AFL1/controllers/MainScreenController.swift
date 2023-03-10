@@ -7,20 +7,19 @@
 
 import Foundation
 
+// show the main screen
 func MainScreenController_ShowMainScreen() -> Void {
     print("Welcome to UC Walk Cafeteria 👨🏼‍🍳👨🏼‍🍳")
     
     var options = Model_Shops_GetShops.map({ shop in
-        return Util_ConsoleAsk_Option_Type(value: String(shop.ID), label: shop.name)
+        return Util_ConsoleAsk_Option(value: String(shop.ID), label: shop.name)
     })
     
    
     options += [
-        Util_ConsoleAsk_Option_Type(value: "", label: "-", isSeparator: true),
-        Util_ConsoleAsk_Option_Type(value: "S", label: "hopping cart"),
-        Util_ConsoleAsk_Option_Type(value: "Q", label: "uit")
-        
-       
+        Util_ConsoleAsk_Option(value: "", label: "-", isSeparator: true),
+        Util_ConsoleAsk_Option(value: "S", label: "hopping cart"),
+        Util_ConsoleAsk_Option(value: "Q", label: "uit")
     ]
     
 
