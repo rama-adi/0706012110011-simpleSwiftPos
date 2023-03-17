@@ -51,11 +51,13 @@ func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
         cancelable: true
     )
     
+    // a user can cancel their order if they wanted to
     if amountQuestion.canceled {
+        ConsoleUtil_ClearScreen()
         OrderController_StartOrder(shop: shop)
     }
     
-    
+    // sanity check for the amount
     if amountQuestion.value == 0 {
         print("You didn't order the item. not added to the cart.")
     } else {
@@ -64,11 +66,15 @@ func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
         print("Added to cart.")
     }
     
+    // they can also add more items if they want
     let addMore = Util_ConsoleAsk_Confirm(question: "Do you want to add more product from this store?")
     
     if addMore {
+        ConsoleUtil_ClearScreen()
         OrderController_StartOrder(shop: shop)
     }
     
+    
+    ConsoleUtil_ClearScreen()
     MainScreenController_ShowMainScreen()
 }
