@@ -16,6 +16,7 @@ func ProductModel_AddToCart(shop:ShopModel, product: ProductModel, amount: Int) 
     if Consts_ShoppingCart[shop.name] == nil {
         Consts_ShoppingCart[shop.name] = [:]
     }
+    
     if Consts_ShoppingCart[shop.name]![product.name] == nil {
         Consts_ShoppingCart[shop.name]![product.name] = (
             price: product.price,
