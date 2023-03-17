@@ -30,6 +30,8 @@ func CartController_ShowCart() {
     // get the total amount
     total = CartController_ShowBuyProduct()
     
+    print("Total amount needed to pay: \(total). we did not accept NGEBON.")
+    
     CartController_ConfirmPayment(total: total)
 }
 

@@ -7,4 +7,5 @@
 
 import Foundation
 
+// starts the app
 MainScreenController_ShowMainScreen()

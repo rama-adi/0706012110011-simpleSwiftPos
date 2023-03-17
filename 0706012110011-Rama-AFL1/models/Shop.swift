@@ -7,9 +7,10 @@
 
 import Foundation
 
+// typealias to shrink the length of declaration
 typealias ShopModel = (ID: Int, name: String, products: [ ProductModel ])
 
-
+// model definitions for the shop
 let Model_Shops_GetShops: [ShopModel] = [
     ( ID: 1, name: "tuku-tuku", products: [
         (ID: 1, name: "Es teh poci", price: 10000),
