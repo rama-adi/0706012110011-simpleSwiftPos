@@ -8,39 +8,38 @@
 import Foundation
 
 
+
+/// function to show the cart content
 func CartController_ShowCart() {
     print("Your orders:")
     
     var total = 0
     
+    // if the cart is empty
     if Consts_ShoppingCart.isEmpty {
         print("Your shopping cart is still empty")
         print("\nPress [return] to go back to main screen")
         let _ = readLine()
         
+        ConsoleUtil_ClearScreen()
         MainScreenController_ShowMainScreen()
     
     }
     
     
-    
+    // get the total amount
     total = CartController_ShowBuyProduct()
     
-    if !Consts_ShoppingCart.isEmpty {
-        print("Total price: \(total)")
-        let confirmPaymentNow = Util_ConsoleAsk_Confirm(question: "Do you want to pay now?")
-        
-        if confirmPaymentNow {
-            CartController_ConfirmPayment(total: total)
-        } else {
-            MainScreenController_ShowMainScreen()
-        }
-    }
+    CartController_ConfirmPayment(total: total)
 }
 
+
+/// function to show the products in the cart
 func CartController_ShowBuyProduct() -> Int {
     var total = 0
     
+    // Dictionary format: [ Shop Name -> [ Product Name -> ( price, amount bought ) ] ]
+    // this groups all of the products bought from the same shop together
     Consts_ShoppingCart.forEach({ (shop, carts) in
         print("Products from \(shop):")
         carts.forEach({ product, data in
@@ -52,14 +51,7 @@ func CartController_ShowBuyProduct() -> Int {
     return total
 }
 
-func CartController_BreakdownIDSequence(IDSequence: String) -> (shop: ShopModel, product: ProductModel) {
-    let sequence = IDSequence.components(separatedBy: "|")
-    let shop = Model_Shops_GetShops.filter{ String($0.ID) == sequence[0] }[0]
-    let product = shop.products.filter{ String($0.ID) == sequence[1] }[0]
-    
-    return (shop, product)
-}
-
+/// function to confirm the user payment
 func CartController_ConfirmPayment(total: Int) {
     let money = Util_ConsoleAsk_Integer(question: "Please enter the amount of money: ")
     
@@ -87,11 +79,14 @@ func CartController_ConfirmPayment(total: Int) {
         print("You pay: \(money.value) (no change)")
     }
     
+    // clear the shopping cart
     Consts_ShoppingCart = [:]
     print("Enjoy your meals!")
     print("\n\nPress [return] to go back to main screen")
     let _ = readLine()
     
+    // back to main menu
+    ConsoleUtil_ClearScreen()
     MainScreenController_ShowMainScreen()
 }
 

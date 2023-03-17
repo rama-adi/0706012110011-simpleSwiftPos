@@ -8,17 +8,18 @@
 import Foundation
 
 
-
+/// function to start the ordering process from a certain shop
 func OrderController_StartOrder(shop: ShopModel) {
     ConsoleUtil_ClearScreen()
     
     print("Hi, welcome back to \(shop.name)!")
-
     
+    // prepares the product to add in the option
     var options = shop.products.map({ product in
         return Util_ConsoleAsk_Option(value: String(product.ID), label: product.name)
     })
     
+    // extra options passed to add separator or back button
     options += [
         Util_ConsoleAsk_Option(value: "", label: "-", isSeparator: true),
         Util_ConsoleAsk_Option(value: "B", label: "ack to main menu"),
@@ -40,6 +41,7 @@ func OrderController_StartOrder(shop: ShopModel) {
     }
 }
 
+/// function to ask the user how much of the product they want to buy
 func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
     ConsoleUtil_ClearScreen()
     print("\(product.name) @ \(product.price)")
@@ -53,7 +55,7 @@ func OrderController_OrderProcess__P(product: ProductModel, shop: ShopModel) {
         OrderController_StartOrder(shop: shop)
     }
     
-
+    
     if amountQuestion.value == 0 {
         print("You didn't order the item. not added to the cart.")
     } else {
