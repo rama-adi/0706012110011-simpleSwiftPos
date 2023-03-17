@@ -6,16 +6,19 @@
 //
 
 import Foundation
-var Consts_ShoppingCart: [String: Int] = [:]
+var Consts_ShoppingCart: [ String: [(product: String, quantity: Int)] ] = [:]
+
 typealias ProductModel = ( ID: Int, name: String, price: Int )
 
 
 func ProductModel_AddToCart(shop:ShopModel, product: ProductModel, amount: Int) {
     
-    
-    if Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] == nil {
-        Consts_ShoppingCart["\(shop.ID)|\(product.ID)"] = 0
+    if Consts_ShoppingCart[shop.name] == nil {
+        Consts_ShoppingCart[shop.name] = []
+    }
+    if Consts_ShoppingCart[shop.name]![product.name] == nil {
+        Consts_ShoppingCart[shop.name][product.name] = (
+        )
     }
     
-    Consts_ShoppingCart["\(shop.ID)|\(product.ID)"]! += amount
 }
