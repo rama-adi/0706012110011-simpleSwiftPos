@@ -35,3 +35,16 @@ func ProductModel_AddToCart(shop:ShopModel, product: ProductModel, amount: Int) 
     )
     
 }
+
+
+class Product: Identifiable {
+    var ID: Int
+    var name: String
+    var price: Int
+    
+    init(ID: Int, name: String, price: Int) {
+        self.ID = ID
+        self.name = name
+        self.price = price
+    }
+}
