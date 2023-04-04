@@ -13,4 +13,10 @@ protocol ConsoleViewable {
 
 class ConsoleView {
     let components: ConsoleComponent = ConsoleComponent()
+    
+    func clearScreen() -> Void {
+        for _ in 1...100 {
+            print("")
+        }
+    }
 }
