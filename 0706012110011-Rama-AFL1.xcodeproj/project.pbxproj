@@ -14,6 +14,7 @@
 		257049F229AF79CD00B1F2DC /* OrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257049F129AF79CD00B1F2DC /* OrderController.swift */; };
 		257049F629AF7E2E00B1F2DC /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257049F529AF7E2E00B1F2DC /* Console.swift */; };
 		257049FA29B0742500B1F2DC /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257049F929B0742500B1F2DC /* CartController.swift */; };
+		257905D229DC83A400E18B47 /* ConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257905D129DC83A400E18B47 /* ConsoleView.swift */; };
 		25A4AE5A29ADA01800D71C0C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AE5929ADA01800D71C0C /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		257049F129AF79CD00B1F2DC /* OrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderController.swift; sourceTree = "<group>"; };
 		257049F529AF7E2E00B1F2DC /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
 		257049F929B0742500B1F2DC /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
+		257905D129DC83A400E18B47 /* ConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleView.swift; sourceTree = "<group>"; };
 		25A4AE5629ADA01800D71C0C /* 0706012110011-Rama-AFL1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "0706012110011-Rama-AFL1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A4AE5929ADA01800D71C0C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,11 +64,19 @@
 			path = controllers;
 			sourceTree = "<group>";
 		};
+		257905D329DC844100E18B47 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		259642F829ADE12E0092CD23 /* utils */ = {
 			isa = PBXGroup;
 			children = (
 				257049E829AF1F9300B1F2DC /* ConsoleAsk.swift */,
 				257049F529AF7E2E00B1F2DC /* Console.swift */,
+				257905D129DC83A400E18B47 /* ConsoleView.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -99,6 +109,7 @@
 		25A4AE5829ADA01800D71C0C /* 0706012110011-Rama-AFL1 */ = {
 			isa = PBXGroup;
 			children = (
+				257905D329DC844100E18B47 /* views */,
 				257049EE29AF574000B1F2DC /* controllers */,
 				259642FD29AE0CB20092CD23 /* models */,
 				259642F829ADE12E0092CD23 /* utils */,
@@ -169,6 +180,7 @@
 				257049F229AF79CD00B1F2DC /* OrderController.swift in Sources */,
 				25A4AE5A29ADA01800D71C0C /* main.swift in Sources */,
 				252B303829B190CF004802EA /* Shop.swift in Sources */,
+				257905D229DC83A400E18B47 /* ConsoleView.swift in Sources */,
 				257049F629AF7E2E00B1F2DC /* Console.swift in Sources */,
 				257049E929AF1F9300B1F2DC /* ConsoleAsk.swift in Sources */,
 				257049F029AF578300B1F2DC /* MainScreenController.swift in Sources */,

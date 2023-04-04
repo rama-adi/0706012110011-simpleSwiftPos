@@ -7,6 +7,182 @@
 
 import Foundation
 
+struct ConsoleComponent {
+    
+    struct DropdownOption {
+        var value: String
+        var label: String
+        var isSeparator: Bool
+    }
+    
+    struct BaseConfiguration {
+        var emptyInputMessage: String = "The input is empty! please try again"
+        var errorMessage: String = "The input is invalid! Please try again"
+    }
+    
+    struct ConfirmationInputConfiguration {
+        var invalidConfirmationInputMessage: String = "You can only input y/N as the answer!"
+    }
+    
+    func ConfirmationInput(
+        question: String,
+        baseConfig: BaseConfiguration = BaseConfiguration(),
+        config: ConfirmationInputConfiguration = ConfirmationInputConfiguration()
+    ) -> Bool {
+        print("\(question) [y/N]: ", terminator: "")
+        
+        guard let input = readLine() else {
+            print(baseConfig.emptyInputMessage)
+            return ConfirmationInput(question: question, baseConfig: baseConfig, config: config)
+        }
+        
+        switch input {
+        case let x where ["y", "yes"].contains(x.lowercased()):
+            return true
+            
+        case let x where ["n", "no"].contains(x.lowercased()):
+            return false
+            
+        default:
+            print(config.invalidConfirmationInputMessage)
+            return ConfirmationInput(question: question, baseConfig: baseConfig, config: config)
+        }
+    }
+    
+    struct DropdownInputConfiguration {
+        var caseInsensitive: Bool = true
+        
+        var inputSelectionAboveMessage: String = "please input one of the selection above: "
+        
+        var displayFormat: (String,String) -> String = { value, label in
+            return "[\(value)] \(label)"
+        }
+        
+        var separatorDisplayFormat: (_ label:String) -> String = { label in
+            return "\(label)"
+        }
+        
+    }
+    func DropdownInput(
+        question: String,
+        options: [DropdownOption],
+        baseConfig: BaseConfiguration = BaseConfiguration(errorMessage: "The option doesn't exist! try again."),
+        config: DropdownInputConfiguration = DropdownInputConfiguration()
+    ) -> DropdownOption {
+        print(question)
+        
+        // prints the list of options specified
+        for option in options {
+            if option.isSeparator != true {
+                print(config.displayFormat(option.value, option.label))
+            } else {
+                print(config.separatorDisplayFormat(option.label))
+            }
+        }
+        
+        // print the selection message
+        print(config.inputSelectionAboveMessage, terminator: "")
+        
+        // a null-check that re-prompts the user if they haven't picked any options
+        guard var input = readLine() else {
+            print(baseConfig.emptyInputMessage)
+            
+            return DropdownInput(
+                question: question,
+                options: options,
+                baseConfig: baseConfig,
+                config: config
+            )
+        }
+        
+        var selected: DropdownOption? = nil
+        
+        // lowercase the input if the dropdown specified is case insensitive
+        if config.caseInsensitive {
+            input = input.lowercased()
+        }
+        
+        // loop thru the options and assign the picked option from the list
+        for option in options {
+            var value = ""
+            
+            if config.caseInsensitive {
+                value = option.value.lowercased()
+            } else {
+                value = option.value
+            }
+            
+            if option.isSeparator != true && input == value {
+                selected = option
+                break
+            }
+        }
+        
+        // if the option didn't exist, print the error message and re-prompt the user
+        if selected == nil {
+            print(baseConfig.errorMessage)
+            return DropdownInput(
+                question: question,
+                options: options,
+                baseConfig: baseConfig,
+                config: config
+            )
+        }
+        
+        return selected!
+    }
+    
+    struct IntegerInputConfiguration {
+        var cancelable: Bool = false
+        var cancelableMessage: String = "to cancel, type !CANCEL"
+    }
+    
+    func IntegerInput(
+        question: String,
+        config: IntegerInputConfiguration = IntegerInputConfiguration(),
+        baseConfig: BaseConfiguration = BaseConfiguration()
+    ) -> (canceled: Bool, value: Int) {
+        
+        // tells the user if they can cancel
+        if config.cancelable {
+            print(config.cancelableMessage)
+        }
+        
+        print("\(question) ", terminator: "")
+        
+        
+        
+        guard let input = readLine() else {
+            print(baseConfig.emptyInputMessage)
+            return IntegerInput(
+                question: question,
+                config: config,
+                baseConfig: baseConfig
+            )
+        }
+        
+        if cancelable {
+            if input == "!CANCEL" {
+                return (true, 0)
+            }
+        }
+        
+        guard let integer = Int(input) else {
+            print(baseConfig.errorMessage)
+            return IntegerInput(
+                question: question,
+                config: config,
+                baseConfig: baseConfig
+            )
+        }
+        
+        
+        return (false, integer)
+    }
+
+}
+
+
 /// A type alias for the shape of an option type in dictionary form
 ///
 /// **This is an internal typealias only used by the ConsoleAsk utility**, if you want to add a dropdown
