@@ -9,21 +9,40 @@ import Foundation
 
 struct ConsoleComponent {
     
-    struct DropdownOption {
-        var value: String
-        var label: String
-        var isSeparator: Bool
-    }
     
+
+    /// A `struct` to define the base configuration.
+    ///
+    /// Each input type will have these base configuration applied to them.
+    /// You can modify each by changing the `baseConfiguration` params on each input type,
+    /// and passing your own ``BaseConfiguration`` struct.
     struct BaseConfiguration {
         var emptyInputMessage: String = "The input is empty! please try again"
         var errorMessage: String = "The input is invalid! Please try again"
     }
     
+    /// A `struct` for modifying ``ConfirmationInput(question:baseConfig:config:)`` configration
+    ///
+    /// Each types of input will have their own struct to define their configuration.
+    /// you can override their default configuration by passing your own modified configuration struct
     struct ConfirmationInputConfiguration {
         var invalidConfirmationInputMessage: String = "You can only input y/N as the answer!"
     }
     
+    
+    /// Presents the user a yes/no confirmation message. the user can type in `yes/no` or `y/n` (case insesitive) to confirm their selection
+    ///
+    /// To present a user with a yes/no question. if the user tries to input anything except a yes/no question, they will be asked to re-input their answer.
+    ///
+    ///     let like_dessert = ConfirmationInput(
+    ///         question: "Do you like dessert?"
+    ///     )
+    ///
+    /// - Parameters:
+    ///   - question: the question that the user must confirm with yes/no
+    ///   - baseConfig: ``BaseConfiguration`` struct
+    ///   - config: a ``ConfirmationInputConfiguration`` struct where you can configure the settings for the confirmation input
+    /// - Returns: a boolean that confirms their selection (true - yes, and false - no)
     func ConfirmationInput(
         question: String,
         baseConfig: BaseConfiguration = BaseConfiguration(),
@@ -49,6 +68,29 @@ struct ConsoleComponent {
         }
     }
     
+    /// A `struct` for the options that can be passed to ``DropdownInput(question:options:baseConfig:config:)``
+    ///
+    ///
+    ///     let available_desserts = [
+    ///         DropdownOption(value: "1", label: "Potato donut")
+    ///         DropdownOption(value: "2", label: "Ube Donut")
+    ///
+    ///         // add a separator
+    ///         DropdownOption(value: "", label: "-", isSeparator: true)
+    ///
+    ///         // continue
+    ///         DropdownOption(value: "3", label: "Croffle")
+    ///     ]
+    struct DropdownOption {
+        var value: String
+        var label: String
+        var isSeparator: Bool
+    }
+    
+    /// A `struct` for modifying ``DropdownInput(question:options:baseConfig:config:)`` configration
+    ///
+    /// Each types of input will have their own struct to define their configuration.
+    /// you can override their default configuration by passing your own modified configuration struct
     struct DropdownInputConfiguration {
         var caseInsensitive: Bool = true
         
@@ -63,6 +105,23 @@ struct ConsoleComponent {
         }
         
     }
+    
+    
+    /// Presents the user a dropdown list of predefined options they can pick from.
+    ///
+    /// To confirm their selection, a user must pick the value from the value (by default from the left-most, bracketed text.)
+    /// If the user tried to input anything that is not on the list, they will be asked to reinput their selection.
+    ///
+    ///     let my_favorite_dessert = DropdownInput(
+    ///         question: "Please pick out from an available desser options:"
+    ///     )
+    ///
+    /// - Parameters:
+    ///   - question: the question that the user must confirm with yes/no
+    ///   - options: the array of questions that the user can pick out from
+    ///   - baseConfig: ``BaseConfiguration`` struct
+    ///   - config: a ``DropdownInputConfiguration`` struct where you can configure the settings for the dropdown
+    /// - Returns: a ``DropdownOption`` that the user picked
     func DropdownInput(
         question: String,
         options: [DropdownOption],
@@ -95,6 +154,7 @@ struct ConsoleComponent {
             )
         }
         
+        // holder for the selected option
         var selected: DropdownOption? = nil
         
         // lowercase the input if the dropdown specified is case insensitive
@@ -132,11 +192,31 @@ struct ConsoleComponent {
         return selected!
     }
     
+    
+    /// A `struct` for modifying ``IntegerInput(question:config:baseConfig:)`` configration
+    ///
+    /// Each types of input will have their own struct to define their configuration.
+    /// you can override their default configuration by passing your own modified configuration struct
     struct IntegerInputConfiguration {
         var cancelable: Bool = false
         var cancelableMessage: String = "to cancel, type !CANCEL"
     }
     
+    
+    /// Ask the user to input a numeric value
+    ///
+    /// A basic usage for the integer input
+    ///     let answer_to_life = IntegerInput(
+    ///         question: "What's the meaning of life? answer:"
+    ///     )
+    ///
+    /// An ``IntegerInput(question:config:baseConfig:)`` can also be marked as `cancelable`, if you want to know if the user canceled the input.
+    ///
+    /// - Parameters:
+    ///   - question: the question that the user must confirm with yes/no
+    ///   - baseConfig: ``BaseConfiguration`` struct
+    ///   - config: a ``IntegerInputConfiguration`` struct where you can configure the input
+    /// - Returns: a tuple (`canceled` and `value`)
     func IntegerInput(
         question: String,
         config: IntegerInputConfiguration = IntegerInputConfiguration(),
@@ -161,7 +241,7 @@ struct ConsoleComponent {
             )
         }
         
-        if cancelable {
+        if config.cancelable {
             if input == "!CANCEL" {
                 return (true, 0)
             }
@@ -180,166 +260,4 @@ struct ConsoleComponent {
         return (false, integer)
     }
 
-}
-
-
-/// A type alias for the shape of an option type in dictionary form
-///
-/// **This is an internal typealias only used by the ConsoleAsk utility**, if you want to add a dropdown
-/// question to your console app, please use the `Util_ConsoleAsk_Option` function
-///
-///     let available_desserts = [
-///         Util_ConsoleAsk_Option(value: "1", "Croffle")
-///         Util_ConsoleAsk_Option(value: "2", "Donut")
-///     ]
-typealias Util_ConsoleAsk_Option_Type = ( value: String, label: String, isSeparator: Bool )
-
-
-/// A proxy for the `Util_ConsoleAsk_Option_Type` typealias that presents the shape of an option in a dictionary format
-///
-/// a `Util_ConsoleAsk_Confirm` will accepts an array of `Util_ConsoleAsk_Option_Type` to display a list of options the user can pick from
-///
-///     let available_desserts = [
-///         Util_ConsoleAsk_Option(value: "1", "Croffle")
-///         Util_ConsoleAsk_Option(value: "2", "Donut")
-///     ]
-func Util_ConsoleAsk_Option(value: String, label: String, isSeparator: Bool = false) -> Util_ConsoleAsk_Option_Type  {
-    return (
-        value, label, isSeparator
-    )
-}
-
-
-/// Presents the user a yes/no confirmation message. the user can type in `yes/no` or `y/n` (case insesitive) to confirm their selection
-///
-/// To present a user with a yes/no question. if the user tries to input anything except a yes/no question, they will be asked to re-input their answer.
-///
-///     let like_dessert = Util_ConsoleAsk_Confirm(
-///         question: "Do you like dessert?"
-///     )
-///
-/// - Parameters:
-///   - question: the question that the user must confirm with yes/no
-///   - errorMessage: an optional error message that you can costumize
-/// - Returns: a boolean that confirms their selection (true - yes, and false - no)
-func Util_ConsoleAsk_Confirm(question: String, errorMessage: String = "Invalid input!") -> Bool {
-    print("\(question) [y/N]: ", terminator: "")
-    
-    guard let input = readLine() else {
-        print("Input is empty! Please fill out the question.")
-        return Util_ConsoleAsk_Confirm(question: question, errorMessage: errorMessage)
-    }
-    
-    switch input {
-    case let x where ["y", "yes"].contains(x.lowercased()):
-        return true
-        
-    case let x where ["n", "no"].contains(x.lowercased()):
-        return false
-        
-    default:
-        print("Please only input only y/N answer!")
-        return Util_ConsoleAsk_Confirm(question: question, errorMessage: errorMessage)
-    }
-}
-
-/// Presents the user a dropdown list of predefined options they can pick from. To confirm their selection
-///
-/// To confirm their selection, a user must pick the value from the left-most, bracketed text. If the user tried to input
-/// anything that is not on the list, they will be asked to reinput their selection.
-///
-///     let my_favorite_dessert = Util_ConsoleAsk_Option(
-///         question: "Please pick out from an available desser options:"
-///         options: available_dessers
-///         caseInsensitive: false
-///     )
-///
-/// - Parameters:
-///   - question: the question that the user must confirm with yes/no
-///   - options: the array of questions that the user can pick out from
-///   - caseInsensitive: toggle the case sensitivity of the label to pick from
-/// - Returns: a `Util_ConsoleAsk_Option_Type` that the user picked
-func Util_ConsoleAsk_Dropdown(question: String, options: [Util_ConsoleAsk_Option_Type], caseInsensitive: Bool = true, errorMessage: String = "Invalid input!") -> Util_ConsoleAsk_Option_Type {
-    print(question)
-    
-    // prints the list of options specified
-    for option in options {
-        if option.isSeparator != true {
-            print("[\(option.value)] \(option.label)")
-        } else {
-            print("\(option.label)")
-        }
-    }
-    
-    print("please input one of the selection above: ", terminator: "")
-    
-    // a null-check that re-prompts the user if they haven't picked any options
-    guard var input = readLine() else {
-        print("Input is empty! Please fill out the question.")
-        return Util_ConsoleAsk_Dropdown(question: question, options: options, errorMessage: errorMessage)
-    }
-    
-    var selected: Util_ConsoleAsk_Option_Type? = nil
-    
-    // lowercase the input if the dropdown specified is case insensitive
-    if caseInsensitive {
-        input = input.lowercased()
-    }
-    
-    // loop thru the options and assign the picked option from the list
-    for option in options {
-        var value = ""
-        
-        if caseInsensitive {
-            value = option.value.lowercased()
-        } else {
-            value = option.value
-        }
-        
-        if option.isSeparator != true && input == value {
-            selected = option
-            break
-        }
-    }
-    
-    // if the option didn't exist, print the error message and re-prompt the user
-    if selected == nil {
-        print(errorMessage)
-        return Util_ConsoleAsk_Dropdown(question: question, options: options, errorMessage: errorMessage)
-    }
-    
-    return selected!
-}
-
-func Util_ConsoleAsk_Integer(
-    question: String,
-    errorMessage: String = "Invalid input!",
-    cancelable: Bool = false
-) -> (canceled: Bool, value: Int) {
-    if cancelable {
-        print("to cancel, type !CANCEL")
-    }
-    
-    print("\(question) ", terminator: "")
-    
-    
-    
-    guard let input = readLine() else {
-        print("Input is empty! Please fill out the question.")
-        return Util_ConsoleAsk_Integer(question: question, errorMessage: errorMessage)
-    }
-    
-    if cancelable {
-        if input == "!CANCEL" {
-            return (true, 0)
-        }
-    }
-    
-    guard let integer = Int(input) else {
-        print(errorMessage)
-        return Util_ConsoleAsk_Integer(question: question, errorMessage: errorMessage)
-    }
-    
-    
-    return (false, integer)
 }
