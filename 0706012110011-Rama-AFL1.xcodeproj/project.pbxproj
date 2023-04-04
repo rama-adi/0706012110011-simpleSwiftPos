@@ -15,6 +15,7 @@
 		257905D229DC83A400E18B47 /* ConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257905D129DC83A400E18B47 /* ConsoleView.swift */; };
 		257905D529DC90AB00E18B47 /* ConsoleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257905D429DC90AB00E18B47 /* ConsoleComponent.swift */; };
 		257905D929DC91B900E18B47 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257905D829DC91B900E18B47 /* MainView.swift */; };
+		257905DD29DC975E00E18B47 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257905DC29DC975E00E18B47 /* Consts.swift */; };
 		25A4AE5A29ADA01800D71C0C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4AE5929ADA01800D71C0C /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		257905D129DC83A400E18B47 /* ConsoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleView.swift; sourceTree = "<group>"; };
 		257905D429DC90AB00E18B47 /* ConsoleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleComponent.swift; sourceTree = "<group>"; };
 		257905D829DC91B900E18B47 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		257905DC29DC975E00E18B47 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		25A4AE5629ADA01800D71C0C /* 0706012110011-Rama-AFL1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "0706012110011-Rama-AFL1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A4AE5929ADA01800D71C0C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +88,7 @@
 			children = (
 				252B303729B190CF004802EA /* Shop.swift */,
 				252B303929B191EC004802EA /* Product.swift */,
+				257905DC29DC975E00E18B47 /* Consts.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				257049FA29B0742500B1F2DC /* CartController.swift in Sources */,
+				257905DD29DC975E00E18B47 /* Consts.swift in Sources */,
 				257905D929DC91B900E18B47 /* MainView.swift in Sources */,
 				257049F229AF79CD00B1F2DC /* OrderController.swift in Sources */,
 				25A4AE5A29ADA01800D71C0C /* main.swift in Sources */,
