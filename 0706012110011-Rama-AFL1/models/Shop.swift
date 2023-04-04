@@ -7,19 +7,15 @@
 
 import Foundation
 
-/// The shop struct
-struct Shop {
-    
-    
-    
+/// The shop class
 class Shop: Identifiable {
-        var ID: Int
-        var name: String
-        var products: [Product]
-        
-        init(ID: Int, name: String, products: [Product]) {
-            self.ID = ID
-            self.name = name
-            self.products = products
-        }
+    var ID: Int
+    var name: String
+    var products: [Product]
+    
+    init(ID: Int, name: String, products: [Product]) {
+        self.ID = ID
+        self.name = name
+        self.products = products
     }
+}
