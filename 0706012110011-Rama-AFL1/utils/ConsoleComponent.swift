@@ -82,7 +82,12 @@ struct ConsoleComponent {
     struct DropdownOption {
         var value: String
         var label: String
-        var isSeparator: Bool
+        var isSeparator: Bool = false
+    }
+    
+    
+    func dropdownOption(value: String, label: String, isSeparator: Bool = false) -> DropdownOption {
+        return DropdownOption(value: value, label: label, isSeparator: isSeparator)
     }
     
     /// A `struct` for modifying ``DropdownInput(question:options:baseConfig:config:)`` configration
